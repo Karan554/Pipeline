@@ -11,10 +11,9 @@ pipeline {
         stage('Build') {
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
+                mvn -B -DskipTests clean package
                 sh '''
-                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
                     ./jenkins/build/build.sh
-
                 '''
             }
 
